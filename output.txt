@@ -1,32 +1,10 @@
-[TEST 1] Searching PDB for: 'hemoglobin'
-[ERROR] Test 1 failed unexpectedly: Message: invalid element state
-  (Session info: chrome=149.0.7827.196)
-Stacktrace:
-        chromedriver!GetHandleVerifier [0x7ff718183fa5+14925]
-        chromedriver!GetHandleVerifier [0x7ff718184000+14980]
-        chromedriver!(No symbol) [0x7ff717cc7726]
-        chromedriver!(No symbol) [0x7ff717d18457]
-        chromedriver!(No symbol) [0x7ff717d4a3ca]
-        chromedriver!(No symbol) [0x7ff717d157c6]
-        chromedriver!(No symbol) [0x7ff717d6f39b]
-        chromedriver!(No symbol) [0x7ff717d1401c]
-        chromedriver!(No symbol) [0x7ff717d14f43]
-        chromedriver!GetHandleVerifier [0x7ff718767591+5f7f11]
-        chromedriver!GetHandleVerifier [0x7ff718761902+5f2282]
-        chromedriver!GetHandleVerifier [0x7ff718787115+617a95]
-        chromedriver!GetHandleVerifier [0x7ff7181a1dce+3274e]
-        chromedriver!GetHandleVerifier [0x7ff7181aa82c+3b1ac]
-        chromedriver!GetHandleVerifier [0x7ff71818d744+1e0c4]
-        chromedriver!GetHandleVerifier [0x7ff71818d8d4+1e254]
-        chromedriver!GetHandleVerifier [0x7ff718171447+1dc7]
-        KERNEL32!BaseThreadInitThunk [0x7fff90bee957+17]
-        ntdll!RtlUserThreadStart [0x7fff92707c1c+2c]
+TEST 1 : Search Hemoglobin
+FAIL : Search could not be completed
 
+TEST 2 : Open PDB Entry
+Page Title : RCSB PDB - 1HHO: STRUCTURE OF HUMAN OXYHAEMOGLOBIN AT 2.1 ANGSTROMS RESOLUTION
+Structure Title : STRUCTURE OF HUMAN OXYHAEMOGLOBIN AT 2.1 ANGSTROMS RESOLUTION
+PASS : Structure page opened
 
-[TEST 2] Loading PDB entry: 1HHO
-[INFO] Page title: RCSB PDB - 1HHO: STRUCTURE OF HUMAN OXYHAEMOGLOBIN AT 2.1 ANGSTROMS RESOLUTION
-[PASS] Structure title found: STRUCTURE OF HUMAN OXYHAEMOGLOBIN AT 2.1 ANGSTROMS RESOLUTION
-[PASS] Macromolecule table loaded successfully.
-
-[TEST 3] Checking download options for: 1HHO
-[PASS] Download button is present for 1HHO.
+TEST 3 : Check Download Button
+PASS : Download button is present
