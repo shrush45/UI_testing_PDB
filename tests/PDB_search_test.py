@@ -5,9 +5,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 
-# Open Chrome
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-driver.maximize_window()
+driver = webdriver.Chrome()
 
 # -------------------------------
 # TEST 1 - Search Hemoglobin
@@ -18,15 +16,14 @@ driver.get("https://www.rcsb.org/")
 time.sleep(3)
 
 try:
-    search_box = driver.find_element(By.ID, "search-bar-input")
+    search_box = driver.find_element(By.ID,"search-bar-input-text")
     search_box.send_keys("hemoglobin")
     search_box.send_keys(Keys.ENTER)
-
     time.sleep(5)
 
-    result = driver.find_element(By.ID, "result-count").text
+    result = driver.find_element(By.CSS_SELECTOR, "span[class='sc-eGCcFJ FVXco'] span strong")
 
-    print("Results Found :", result)
+    print("Results Found :", result.text)
     print("PASS : Search completed successfully")
 
 except:
