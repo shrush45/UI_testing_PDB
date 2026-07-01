@@ -7,13 +7,13 @@ import time
 
 driver = webdriver.Chrome()
 
-# -------------------------------
-# TEST 1 - Search Hemoglobin
-# -------------------------------
+# -----------------------------------------------
+# TEST 1 - Search Hemoglobin and display results
+# ----------------------------------------------
 print("\nTEST 1 : Search Hemoglobin")
 
 driver.get("https://www.rcsb.org/")
-time.sleep(3)
+time.sleep(5)
 
 try:
     search_box = driver.find_element(By.ID,"search-bar-input-text")
@@ -35,8 +35,7 @@ driver.quit()
 # -------------------------------
 # TEST 2 - Open PDB Structure
 # -------------------------------
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-driver.maximize_window()
+driver = webdriver.Chrome()
 
 print("\nTEST 2 : Open PDB Entry")
 
@@ -60,8 +59,7 @@ driver.quit()
 # -------------------------------
 # TEST 3 - Check Download Button
 # -------------------------------
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-driver.maximize_window()
+driver = webdriver.Chrome()
 
 print("\nTEST 3 : Check Download Button")
 
@@ -78,3 +76,64 @@ except:
     print("FAIL : Download button not found")
 
 driver.quit()
+
+# -----------------------------------------
+# TEST 4 - Check invalid search
+# -----------------------------------------
+# -------------------------------
+driver = webdriver.Chrome()
+print("\nTEST 4 : Check for Invalid search")
+
+driver.get("https://www.rcsb.org/")
+time.sleep(5)
+
+try:
+    search_box = driver.find_element(By.ID,"search-bar-input-text")
+    search_box.send_keys("asdfghjkl")
+    search_box.send_keys(Keys.ENTER)
+    time.sleep(5)
+
+    search_output = driver.find_element(By.CSS_SELECTOR, "div[class='sc-iumHka dUBPff'] h4")
+
+    print("Results Found :", search_output.text)
+    print("PASS : Check completed successfully for invalid search")
+
+except:
+    print("FAIL : Search could not be completed")
+
+driver.quit()
+
+# -----------------------------------------------
+# TEST 5 : Verify homepage loads successfully
+# ----------------------------------------------
+driver = webdriver.Chrome()
+print("\n TEST 5 : Check if the homepage loads successfully or not")
+
+driver.get("https://www.rcsb.org/")
+time.sleep(8)
+
+try:
+    # Check Logo
+    logo = driver.find_element(By.ID, "rcsblogo")
+    if logo.is_displayed():
+        print("Logo is visible")
+
+    # Check Search Bar
+    search_bar = driver.find_element(By.ID, "search-bar-input-text")
+    if search_bar.is_displayed():
+        print("Search bar is visible")
+
+    # Check Navigation Menu
+    nav_menu = driver.find_element(By.ID, "nav")
+    if nav_menu.is_displayed():
+        print("Navigation menu is visible")
+
+    print("\nHomepage loaded successfully.")
+
+except Exception as e:
+    print("\nHomepage could not load properly.")
+    print("Error:", e)
+
+driver.quit()
+
+
