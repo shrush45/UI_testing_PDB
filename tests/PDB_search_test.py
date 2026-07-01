@@ -64,6 +64,32 @@ except:
 
 driver.quit()
 
+# --------------------------------------------
+# TEST - Search with Valid PDB ID 
+# --------------------------------------------
+
+driver = webdriver.Chrome()
+print("\nTEST : Check for valid search using PDB ID")
+
+driver.get("https://www.rcsb.org/")
+time.sleep(5)
+
+try:
+    search_box = driver.find_element(By.ID,"search-bar-input-text")
+    search_box.send_keys("1HHO")
+    search_box.send_keys(Keys.ENTER)
+    time.sleep(5)
+
+    result = driver.find_element(By.CSS_SELECTOR, "span[class='sc-eGCcFJ FVXco'] span strong")
+
+    print("Results Found :", result.text)
+    print("PASS : Search completed successfully")
+
+except:
+    print("FAIL : Search could not be completed")
+
+driver.quit()
+
 # -----------------------------------------
 # TEST 3 - Check invalid search
 # -----------------------------------------
@@ -132,6 +158,31 @@ try:
 
 except:
     print("FAIL : Download button not found")
+
+driver.quit()
+
+# --------------------------------------
+# TEST 6 - Advanced search filter link is working 
+# --------------------------------------
+
+driver = webdriver.Chrome()
+print("\nTEST : Check if the Advanced search result gives a valid results or not")
+
+driver.get("https://www.rcsb.org/")
+
+try:
+    adv_search = driver.find_element(By.XPATH,"//tr[@id='search-bar-links']//a[normalize-space()='Advanced Search']")
+    adv_search.click()
+    print("Finds Advanced Search")
+    search = driver.find_element(By.XPATH,"//input[@placeholder='Type to find an attribute or select from the list']")
+    search.send_keys("Scientific Name of the Source Organism")
+    search.send_keys(Keys.ENTER)
+    search2 = driver.find_element(By.XPATH,"//input[@class='sc-tYrig fijtBY form-control']")
+    search.send_keys("homo sapiens")
+    search.send_keys(Keys.ENTER)
+    time.sleep(8)
+except:
+    print("Fail")
 
 driver.quit()
 
