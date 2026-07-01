@@ -8,103 +8,7 @@ import time
 driver = webdriver.Chrome()
 
 # -----------------------------------------------
-# TEST 1 - Search Hemoglobin and display results
-# ----------------------------------------------
-print("\nTEST 1 : Search Hemoglobin")
-
-driver.get("https://www.rcsb.org/")
-time.sleep(5)
-
-try:
-    search_box = driver.find_element(By.ID,"search-bar-input-text")
-    search_box.send_keys("hemoglobin")
-    search_box.send_keys(Keys.ENTER)
-    time.sleep(5)
-
-    result = driver.find_element(By.CSS_SELECTOR, "span[class='sc-eGCcFJ FVXco'] span strong")
-
-    print("Results Found :", result.text)
-    print("PASS : Search completed successfully")
-
-except:
-    print("FAIL : Search could not be completed")
-
-driver.quit()
-
-
-# -------------------------------
-# TEST 2 - Open PDB Structure
-# -------------------------------
-driver = webdriver.Chrome()
-
-print("\nTEST 2 : Open PDB Entry")
-
-driver.get("https://www.rcsb.org/structure/1HHO")
-time.sleep(5)
-
-try:
-    print("Page Title :", driver.title)
-
-    title = driver.find_element(By.ID, "structureTitle").text
-    print("Structure Title :", title)
-
-    print("PASS : Structure page opened")
-
-except:
-    print("FAIL : Structure page not loaded")
-
-driver.quit()
-
-
-# -------------------------------
-# TEST 3 - Check Download Button
-# -------------------------------
-driver = webdriver.Chrome()
-
-print("\nTEST 3 : Check Download Button")
-
-driver.get("https://www.rcsb.org/structure/1HHO")
-time.sleep(5)
-
-try:
-    download = driver.find_element(By.ID, "DownloadFilesButton")
-
-    if download.is_displayed():
-        print("PASS : Download button is present")
-
-except:
-    print("FAIL : Download button not found")
-
-driver.quit()
-
-# -----------------------------------------
-# TEST 4 - Check invalid search
-# -----------------------------------------
-# -------------------------------
-driver = webdriver.Chrome()
-print("\nTEST 4 : Check for Invalid search")
-
-driver.get("https://www.rcsb.org/")
-time.sleep(5)
-
-try:
-    search_box = driver.find_element(By.ID,"search-bar-input-text")
-    search_box.send_keys("asdfghjkl")
-    search_box.send_keys(Keys.ENTER)
-    time.sleep(5)
-
-    search_output = driver.find_element(By.CSS_SELECTOR, "div[class='sc-iumHka dUBPff'] h4")
-
-    print("Results Found :", search_output.text)
-    print("PASS : Check completed successfully for invalid search")
-
-except:
-    print("FAIL : Search could not be completed")
-
-driver.quit()
-
-# -----------------------------------------------
-# TEST 5 : Verify homepage loads successfully
+# TEST 1 : Verify homepage loads successfully
 # ----------------------------------------------
 driver = webdriver.Chrome()
 print("\n TEST 5 : Check if the homepage loads successfully or not")
@@ -136,4 +40,98 @@ except Exception as e:
 
 driver.quit()
 
+# -----------------------------------------------
+# TEST 2 - Search Hemoglobin and display results
+# ----------------------------------------------
+print("\nTEST 1 : Search Hemoglobin")
+
+driver.get("https://www.rcsb.org/")
+time.sleep(5)
+
+try:
+    search_box = driver.find_element(By.ID,"search-bar-input-text")
+    search_box.send_keys("hemoglobin")
+    search_box.send_keys(Keys.ENTER)
+    time.sleep(5)
+
+    result = driver.find_element(By.CSS_SELECTOR, "span[class='sc-eGCcFJ FVXco'] span strong")
+
+    print("Results Found :", result.text)
+    print("PASS : Search completed successfully")
+
+except:
+    print("FAIL : Search could not be completed")
+
+driver.quit()
+
+# -----------------------------------------
+# TEST 3 - Check invalid search
+# -----------------------------------------
+# -------------------------------
+driver = webdriver.Chrome()
+print("\nTEST 4 : Check for Invalid search")
+
+driver.get("https://www.rcsb.org/")
+time.sleep(5)
+
+try:
+    search_box = driver.find_element(By.ID,"search-bar-input-text")
+    search_box.send_keys("asdfghjkl")
+    search_box.send_keys(Keys.ENTER)
+    time.sleep(5)
+
+    search_output = driver.find_element(By.CSS_SELECTOR, "div[class='sc-iumHka dUBPff'] h4")
+
+    print("Results Found :", search_output.text)
+    print("PASS : Check completed successfully for invalid search")
+
+except:
+    print("FAIL : Search could not be completed")
+
+driver.quit()
+
+# -------------------------------
+# TEST 4 - Open PDB Structure
+# -------------------------------
+driver = webdriver.Chrome()
+
+print("\nTEST 2 : Open PDB Entry")
+
+driver.get("https://www.rcsb.org/structure/1HHO")
+time.sleep(5)
+
+try:
+    print("Page Title :", driver.title)
+
+    title = driver.find_element(By.ID, "structureTitle").text
+    print("Structure Title :", title)
+
+    print("PASS : Structure page opened")
+
+except:
+    print("FAIL : Structure page not loaded")
+
+driver.quit()
+
+
+# -------------------------------
+# TEST 5 - Check Download Button
+# -------------------------------
+driver = webdriver.Chrome()
+
+print("\nTEST 3 : Check Download Button")
+
+driver.get("https://www.rcsb.org/structure/1HHO")
+time.sleep(5)
+
+try:
+    download = driver.find_element(By.ID, "DownloadFilesButton")
+
+    if download.is_displayed():
+        print("PASS : Download button is present")
+
+except:
+    print("FAIL : Download button not found")
+
+driver.quit()
 
